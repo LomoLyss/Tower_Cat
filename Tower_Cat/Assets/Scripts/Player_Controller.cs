@@ -5,6 +5,10 @@ using UnityEngine;
 public class Player_Controller : MonoBehaviour
 {
     [SerializeField] float MoveSpeed = 5.0f;
+    [SerializeField] float RotationSpeed = 500.0f;
+
+    Quaternion targetRotation;
+
     Camera_Controller cameraController;
     private void Awake()
     {
@@ -23,10 +27,10 @@ public class Player_Controller : MonoBehaviour
         if (MoveAmount > 0)
         {
             transform.position += MoveDir * MoveSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.LookRotation(MoveDir);
+            targetRotation = Quaternion.LookRotation(MoveDir);
         }
 
-
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, RotationSpeed * Time.deltaTime);
        
     }
 }
