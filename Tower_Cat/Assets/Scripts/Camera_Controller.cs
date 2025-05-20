@@ -32,8 +32,8 @@ public class Camera_Controller : MonoBehaviour
         invertXVal = (invertX) ? -1 : 1;
         invertYVal = (invertY) ? -1 : 1;
 
-        rotateY += Input.GetAxis("Mouse X") * rotationSpeed;
-        rotateX += Input.GetAxis("Mouse Y") * rotationSpeed;
+        rotateY += Input.GetAxis("Mouse X") * invertXVal * rotationSpeed;
+        rotateX += Input.GetAxis("Mouse Y") * invertYVal * rotationSpeed;
         rotateX = Mathf.Clamp(rotateX, minVerticalAngle, maxVerticalAngle);
 
         var TargetRotation = Quaternion.Euler(rotateX, rotateY, 0);
@@ -43,4 +43,6 @@ public class Camera_Controller : MonoBehaviour
         transform.rotation = TargetRotation;
 
     }
+
+    public Quaternion PlanerRotation => Quaternion.Euler(0, rotateY, 0);
 }
