@@ -10,16 +10,18 @@ public class Player_Controller : MonoBehaviour
     Quaternion targetRotation;
 
     Camera_Controller cameraController;
+    Animator animator;
     private void Awake()
     {
        cameraController = Camera.main.GetComponent<Camera_Controller>();
+       animator = GetComponent<Animator>();
     }
     private void Update()
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        float MoveAmount = Mathf.Abs(h) + Mathf.Abs(v);
+        float MoveAmount = Mathf.Clamp01(Mathf.Abs(h) + Mathf.Abs(v));
 
         var MoveInput = (new Vector3(h, 0, v)).normalized;
         var MoveDir = cameraController.PlanerRotation * MoveInput;
@@ -31,6 +33,6 @@ public class Player_Controller : MonoBehaviour
         }
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, RotationSpeed * Time.deltaTime);
-       
+        animator.SetFloat("moveAmount", MoveAmount, 0.2f, Time.deltaTime);
     }
 }
