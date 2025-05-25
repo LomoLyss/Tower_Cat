@@ -73,7 +73,7 @@ public class Player_Controller : MonoBehaviour
     void GroundCheck()
     {
         
-        Debug.Log("IsGrounded =" + isGrounded);
+        //Debug.Log("IsGrounded =" + isGrounded);
         isGrounded = Physics.CheckSphere(transform.TransformPoint(GroundCheckOffset), GroundCheckRadius, GroundLayer);
     }
 
