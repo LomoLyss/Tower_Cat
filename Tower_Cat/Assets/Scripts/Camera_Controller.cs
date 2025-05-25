@@ -20,6 +20,7 @@ public class Camera_Controller : MonoBehaviour
 
     float invertXVal;
     float invertYVal;
+    //currently doesnt work for controller, watch end of video to set up 
 
     private void Start()
     {
