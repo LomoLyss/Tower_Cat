@@ -651,6 +651,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prop_CuttingPlate
       objectReference: {fileID: 0}
+    - target: {fileID: 1344116374282020979, guid: 2f5b5d5c74133eb4da94c020922031a3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1868028560240669385, guid: 2f5b5d5c74133eb4da94c020922031a3, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -890,9 +894,13 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3294294092631564010, guid: a76fdaafdeaab0a4394847404155d743, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 7271654851944796366, guid: a76fdaafdeaab0a4394847404155d743, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a76fdaafdeaab0a4394847404155d743, type: 3}
@@ -910,7 +918,7 @@ BoxCollider:
   m_GameObject: {fileID: 1176898593}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.30977303, y: 0.14046402, z: 0.15262356}
   m_Center: {x: 0.0038418844, y: 0.06615888, z: 0.0000000037252903}
@@ -1141,13 +1149,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2169e4fc4f72f924abd35c9a434492db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LayerMask:
+  CheckingLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
   Casting_Object: {fileID: 1369158623}
   range: 100
   offset: 0.01
   Casting_Box: {fileID: 1369158624}
+  Picked_Up_Object: {fileID: 0}
 --- !u!1 &1842326119
 GameObject:
   m_ObjectHideFlags: 0

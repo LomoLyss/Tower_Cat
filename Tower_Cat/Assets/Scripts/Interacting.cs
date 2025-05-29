@@ -11,6 +11,7 @@ public class Interacting : MonoBehaviour
     public BoxCollider Casting_Box;
     public Ray ray;
     public RaycastHit hit;
+    public GameObject Picked_Up_Object;
     // Vector3 Rayoffset;
 
 
@@ -19,26 +20,39 @@ public class Interacting : MonoBehaviour
 
     private void Awake()
     {
+        // getting components from our empty casting object
         Casting_Object = gameObject;
         Casting_Box = Casting_Object.gameObject.GetComponent<BoxCollider>();
+        CheckingLayer = LayerMask.GetMask("Interacting");
         
     }
 
     void Update()
     {
 
-        
+        // drawing ray from casting object
         Ray ray = new Ray(Casting_Object.transform.position, Casting_Object.transform.forward);
         Casting_Box.Raycast(ray, out hit, range);
         Debug.DrawRay(ray.origin, ray.direction, Color.red);
 
+        // on key press check if raycast is hitting an interactable object
         if (Input.GetKeyDown("e"))
         {
             Debug.Log("Key Down");
-            if(Physics.Raycast(ray, out hit, CheckingLayer))
+            // raycast now checking
+            if(Physics.Raycast(ray, out hit, range, CheckingLayer))
             {
                 Debug.Log("Found Object");
+                if(hit.collider)
+                {
+                    Picked_Up_Object = hit.collider.gameObject;
+                    Picked_Up_Object.tag = "Interactable";
+                    Picked_Up_Object.transform.SetParent(Casting_Object.transform);
+                }
+
             }
+
+
         }
 
     }
